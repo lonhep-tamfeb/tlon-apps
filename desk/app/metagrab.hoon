@@ -9,10 +9,10 @@
 ::    see /lib/metagrab.
 ::
 /+  de-html, mg=metagrab, hutils=http-utils,
-    logs, dbug, verb
+    logs, dbug, transform, verb
 ::
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 ::
 +$  state-2
   $:  %2
@@ -268,10 +268,11 @@
 ::
 =+  log=l
 ::
+%-  agent:transform
 %^  verb  |  %warn
 %-  agent:dbug
 ::
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this  .
     l     log(bowl bowl)

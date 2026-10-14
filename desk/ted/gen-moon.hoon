@@ -29,7 +29,7 @@
   [[%2 ~] mon rift=0 [life=1 sec:ex:cic]~]
 ;<  ~  bind:m
   %-  send-raw-card:strandio
-  [%pass /ted/gen-moon %arvo %j %moon mon *id:block:jael %keys [1 1 pub:ex:cic] %.n]
+  [%pass /ted/gen-moon %arvo %jael %moon mon *id:block:jael %keys [1 1 pub:ex:cic] %.n]
 =/  result=json
   %-  pairs:enjs:format
   :~  ship+s+(scot %p mon)

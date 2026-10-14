@@ -43,12 +43,12 @@
     ch=chat, gv=groups-ver, nv=notes
 /+  *activity, ac=activity-conv, ch-utils=channel-utils, v=volume,
     aj=activity-json, imp=import-aid
-/+  default-agent, verb, dbug, logs
+/+  default-agent, verb, dbug, logs, transform
 ::
 =/  verbose  |
 =>
   |%
-  +$  card  card:agent:gall
+  +$  card  old-card:transform
   ::
   +$  current-state
     $:  %11
@@ -67,9 +67,10 @@
 ::      shouldn't be set to true outside of calls to +migrate.
 =/  importing=?  |
 ::
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 ::
 =<
   |_  =bowl:gall
@@ -79,6 +80,7 @@
       cor   ~(. +> [bowl ~])
   ::
   ++  on-init
+    ^-  (quip card _this)
     =^  cards  state
       abet:init:cor
     [cards this]
@@ -413,7 +415,7 @@
       ~&  [dap.bowl %egg-not-live]
       cor
     =/  bak
-      (load -:!>(*versioned-state:load) +>.old-state.egg)
+      (load -:!>(*versioned-state:load) q.state.old-state.egg)
     ::  restore volume settings, but keep any we've explicitly set ourselves,
     ::  and restore activity summaries & read/bump status
     ::

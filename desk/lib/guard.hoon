@@ -4,12 +4,12 @@
 ::    and provides helpers for translating between safe and unsafe cards,
 ::    agent function and output.
 ::
-/+  *rail
+/+  *rail, transform
 ::
 |%
 +$  card  (wind note gift)
 +$  note
-  $%  $<(%agent note:agent:gall)
+  $%  $<(%agent old-note:transform)
       [%agent [=ship name=term] =task]
   ==
 +$  task
@@ -38,7 +38,7 @@
   (f wire sign(cage (en-rail cage.sign)))
 ::
 ++  unsafe  ::  gall-style card into unsafe guard-style card
-  |=  cad=card:agent:gall
+  |=  cad=old-card:transform
   ^-  card
   ?<  ?=(%slip -.cad)
   ?+  cad  cad
@@ -51,7 +51,7 @@
   |%
   ++  card
     |=  cad=^card
-    ^-  card:agent:gall
+    ^-  old-card:transform
     ?<  ?=(%slip -.cad)
     ?+  cad  cad
       [%pass * %agent * %poke *]     cad(rail.task.q (de-rail rail.task.q.cad))
@@ -61,7 +61,7 @@
   ::
   ++  step
     |*  [caz=(list ^card) cor=*]
-    ^-  [(list card:agent:gall) _cor]
+    ^-  [(list old-card:transform) _cor]
     [(turn caz card) cor]
   ::
   ++  peek

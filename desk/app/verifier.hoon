@@ -21,10 +21,11 @@
 ::
 /-  verifier
 /+  hu=http-utils, logs,
-    dbug, verb, negotiate
+    dbug, transform, verb, negotiate
 /=  display  /app/verifier/display
 =,  (verifier)
 ::
+%-  agent:transform
 %-  %-  agent:negotiate
     [notify=| expose=[~.verifier^%0 ~ ~] expect=~]
 %-  agent:dbug
@@ -33,7 +34,7 @@
 =>
 |%
 +$  state-1  [%1 state]
-+$  card     card:agent:gall
++$  card     old-card:transform
 ::
 ++  attempt-timeout  ~h1
 ++  binding  /verifier
@@ -474,7 +475,7 @@
 ::
 =+  log=l
 ::
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this     .
     l        log(bowl bowl)

@@ -39,7 +39,7 @@
 ::          ==
 ::      rest-of-the-agent
 ::
-/+  logs, rail
+/+  logs, rail, transform
 ::
 /%  m-noun  %noun
 ::
@@ -78,10 +78,10 @@
 =/  strict-marks=(set mark)
   (~(gas in *(set mark)) marks)
 ::
-|=  inner=agent:gall
+|=  inner=old-agent:transform
 |^  agent
 ::
-+$  card  card:agent:gall
++$  card  old-card:transform
 ::  +match-path: is .test a template-prefix of .real?
 ::
 ++  match-path
@@ -220,7 +220,7 @@
 ++  agent
   =|  state-1
   =*  state  -
-  ^-  agent:gall
+  ^-  old-agent:transform
   !.  ::  we hide all the "straight into the inner agent" paths from traces
   |_  =bowl:gall
   +*  this    .
@@ -286,9 +286,9 @@
     ^-  (quip card _this)
     ?.  ?&  ?=(%egg-any mark)
             !:
-              =+  !<(=egg-any:gall vase)
-          ?&  ?=(%live +<.egg-any)
-              ?=([[%discipline *] *] q.old-state.egg-any)
+              =/  =egg:gall  (latest:egg-aid:gall !<(egg-any:gall vase))
+          ?&  ?=(%live -.egg)
+              ?=([[%discipline *] *] q.state.old-state.egg)
           ==  ==
       =^  cards  inner  (on-poke:og mark vase)
       =.  cards  (check-cards:help ~ cards)
@@ -301,7 +301,7 @@
       !>  ^-  egg-any:gall
       =/  =egg:gall  (latest:egg-aid:gall !<(egg-any:gall vase))
       ?>  ?=(%live -.egg)
-      [%20 egg(+.old-state (slot 3 +.old-state.egg))]
+      [%21 egg(state.old-state (slot 3 state.old-state.egg))]
     =^  cards  inner  (on-poke:og cage)  !:
     =.  cards  (check-cards:help ~ cards)
     [cards this]

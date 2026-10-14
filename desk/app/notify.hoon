@@ -1,13 +1,13 @@
 ::
 /-  *notify, resource, a=activity, av=activity-ver, c=channels, meta
 /+  cu=channel-utils, logs, aj=activity-json, ac=activity-conv,
-    default-agent, verb, dbug, agentio
+    default-agent, verb, dbug, transform, agentio
 /$  activity-event-to-json    %activity-event    %json
 /$  activity-event-to-json-1  %activity-event-1  %json
 /$  activity-event-to-json-2  %activity-event-2  %json
 ::
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 ::
 +$  provider-state  (map term provider-entry)
 +$  provider-entry
@@ -212,9 +212,10 @@
 =|  current-state
 =*  state  -
 ::
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 ::
 =<
   |_  =bowl:gall
@@ -226,6 +227,7 @@
       pass  pass:io
   ::
   ++  on-init
+    ^-  (quip card _this)
     :_  this
     :*  (~(watch-our pass:io /activity) %activity /v6/notifications)
         (~(watch-our pass:io /reads) %activity /v6/reads)
@@ -888,7 +890,7 @@
 ::
 ++  give-simple-payload
   |=  [eyre-id=@ta =simple-payload:http]
-  ^-  (list card:agent:gall)
+  ^-  (list old-card:transform)
   =/  header-cage
     [%http-response-header !>(response-header.simple-payload)]
   =/  data-cage

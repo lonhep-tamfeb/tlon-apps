@@ -10,7 +10,7 @@
 ::
 /-  c=channels, cv=channels-ver, g=groups, gv=groups-ver, a=activity, av=activity-ver, story
 /-  meta
-/+  default-agent, verb, dbug,
+/+  default-agent, verb, dbug, transform,
     guard,
     neg=negotiate, discipline, logs,
     sparse, kol, imp=import-aid
@@ -19,6 +19,7 @@
 ::  performance, keep warm
 /+  channel-json
 ::
+%-  agent:transform
 %-  %-  discipline
     :+  ::  unchanging marks
         ::
@@ -167,7 +168,7 @@
 %-  agent:dbug
 %^  verb  |  %warn
 ::
-^-  agent:gall
+^-  old-agent:transform
 =>
   |%
   +$  card  card:guard
@@ -284,7 +285,7 @@
   |=  delay=?
   ^+  cor
   ?:  (~(has by wex.bowl) wire dock)  cor
-  =^  caz=(list card:agent:gall)  subs
+  =^  caz=(list old-card:transform)  subs
     (~(subscribe s [subs bowl]) wire dock path delay)
   (emil (turn caz unsafe:guard))
 ::
@@ -318,7 +319,7 @@
     =/  =wire
       /[kind.nest]/(scot %p ship.nest)/[name.nest]
     =/  duration  (~(rad og (sham our.bowl nest)) ~m15)
-    =/  note=note-arvo
+    =/  note=old-note-arvo:transform
       ::  slightly staggered to spread load. might not be strictly necessary
       ::  for this, but good practice.
       ::
@@ -812,7 +813,7 @@
   ::  %agent %poke cards must be wrapped into the guard card type (unsafe:guard);
   ::  step:un:guard unwraps them back to the real mark when they're emitted.
   %+  turn
-    ^-  (list card:agent:gall)
+    ^-  (list old-card:transform)
     :~  [%pass /kiln/suspend-notes %agent [our.bowl %hood] %poke %kiln-suspend !>(`@tas`%notes)]
         :*  %pass  /kiln/rein-notes  %agent  [our.bowl %hood]  %poke
             %kiln-rein  !>(`[@tas (map @tas ?)]`[%groups (~(put by *(map @tas ?)) %notes &)])
@@ -824,7 +825,7 @@
   |=  [=wire =dock]
   ~>  %spin.['unsubscribe']
   ^+  cor
-  =^  caz=(list card:agent:gall)  subs
+  =^  caz=(list old-card:transform)  subs
     (~(unsubscribe s [subs bowl]) wire dock)
   (emil (turn caz unsafe:guard))
 ++  inflate-io
@@ -1093,7 +1094,7 @@
     ~&  [dap.bowl %egg-not-live]
     cor
   =/  bak
-    (load -:!>(*versioned-state:load) +>.old-state.egg)
+    (load -:!>(*versioned-state:load) q.state.old-state.egg)
   ::  restore as much data as we can. we don't restart subscriptions here,
   ::  we wait for the groups agent to tell us which ones to re-join.
   ::
@@ -1660,7 +1661,7 @@
       [%~.~ %cancel-retry rest=*]  cor
   ::
       [%~.~ %retry rest=*]
-    =^  caz=(list card:agent:gall)  subs
+    =^  caz=(list old-card:transform)  subs
       (~(handle-wakeup s [subs bowl]) pole)
     (emil (turn caz unsafe:guard))
   ::

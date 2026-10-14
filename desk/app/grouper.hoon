@@ -1,5 +1,5 @@
 /-  reel, gv=groups-ver, c=chat, cv=chat-ver, ch=channels, story
-/+  gj=groups-json, default-agent, verb, logs, dbug
+/+  gj=groups-json, default-agent, verb, logs, dbug, transform
 ::
 |%
 ++  enabled-groups  (set cord)
@@ -7,7 +7,7 @@
 ++  bite-subscribe
   |=  =bowl:gall
   [%pass /bite-wire %agent [our.bowl %reel] %watch /bites]
-+$  card  card:agent:gall
++$  card  old-card:transform
 +$  versioned-state
   $%  state-2
       state-1
@@ -49,9 +49,10 @@
 ::
 =|  state-2
 =*  state  -
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this  .
     def   ~(. (default-agent this %.n) bowl)

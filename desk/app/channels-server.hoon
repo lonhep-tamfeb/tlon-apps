@@ -5,11 +5,12 @@
 /-  c=channels, cv=channels-ver, chv=chat-ver, g=groups, gv=groups-ver, av=activity-ver,
     h=hooks, m=meta
 /+  ccv=channel-conv, utils=channel-utils, imp=import-aid, em=emojimart
-/+  default-agent, verb, dbug,
+/+  default-agent, verb, dbug, transform,
     guard,
     neg=negotiate, discipline, logs
 /+  hj=hooks-json
 ::
+%-  agent:transform
 %-  %-  discipline
     :+  ::  unchanging marks
         ::
@@ -38,7 +39,7 @@
 %-  agent:dbug
 %^  verb  |  %warn
 ::
-^-  agent:gall
+^-  old-agent:transform
 =>
   |%
   +$  card  card:guard
@@ -659,7 +660,7 @@
     ~&  [dap.bowl %egg-not-live]
     cor
   =/  bak
-    (load -:!>(*versioned-state:load) +>.old-state.egg)
+    (load -:!>(*versioned-state:load) q.state.old-state.egg)
   ::  for channels that we're gonna restore, tell previous subscribers to
   ::  try again
   ::

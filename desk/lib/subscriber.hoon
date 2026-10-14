@@ -1,3 +1,4 @@
+/+  transform
 =<  subscriber
 |%
 +$  sub
@@ -14,7 +15,7 @@
   ++  interval  ~s30
   ++  handle-wakeup
     |=  =wire
-    ^-  [(list card:agent:gall) _subs]
+    ^-  [(list old-card:transform) _subs]
     ?>  ?=([%~.~ %retry *] wire)
     ~?  verb  ['waking up' wire]
     =/  sub  (~(get by subs) t.t.wire)
@@ -23,7 +24,7 @@
     (~(del by subs) t.t.wire)
   ++  subscribe
     |=  [=wire =dock =path delay=?]
-    ^-  [(list card:agent:gall) _subs]
+    ^-  [(list old-card:transform) _subs]
     ?:  (~(has by subs) wire)
       ((slog 'Duplicate subscription' >[wire dock]< ~) [~ subs])
     ?.  delay  [~[[%pass wire %agent dock %watch path]] subs]
@@ -33,7 +34,7 @@
     ~[[%pass (weld /~/retry wire) %arvo %b %wait fires-at]]
   ++  unsubscribe
     |=  [=wire =dock]
-    ^-  [(list card:agent:gall) _subs]
+    ^-  [(list old-card:transform) _subs]
     =/  leave  [%pass wire %agent dock %leave ~]
     =/  sub  (~(get by subs) wire)
     ?~  sub

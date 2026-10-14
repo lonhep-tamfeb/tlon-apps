@@ -1,6 +1,7 @@
+/+  transform
 =>
   |%
-  ++  card  card:agent:gall
+  ++  card  old-card:transform
   --
 ::
 |_  =bowl:gall
@@ -27,9 +28,9 @@
     (poke-our dap.bowl cage)
   ::
   ++  arvo
-    |=  =note-arvo
+    |=  note=old-note-arvo:transform
     ^-  card
-    [%pass wire %arvo note-arvo]
+    [%pass wire %arvo note]
   ::
   ++  watch
     |=  [=dock =path]
@@ -86,7 +87,7 @@
     (warp-our q.byk.bowl `rave)
   ::
   ++  connect
-    |=  [=binding:eyre app=term]
+    |=  [=binding:old-eyre:transform app=term]
     (arvo %e %connect binding app)
   --
 ::

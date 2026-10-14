@@ -10,10 +10,10 @@
 ::  returned only to the requester — they never appear in a broadcast.
 ::
 /-  b=buckets, gv=groups-ver
-/+  default-agent, dbug, verb, server, util=buckets-util, eyre-reply, logs
+/+  default-agent, dbug, transform, verb, server, util=buckets-util, eyre-reply, logs
 /=  buckets-json  /lib/buckets/json
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 +$  current-state  state:b
 ::  +upload-window: how long a pending upload session stays usable.
 ::
@@ -71,9 +71,10 @@
 --
 =|  current-state
 =*  state  -
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 =<
   |_  =bowl:gall
   +*  this  .

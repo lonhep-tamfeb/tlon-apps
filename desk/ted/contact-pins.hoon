@@ -73,7 +73,7 @@
   ::TODO  include timeout timer?
   %-  send-raw-cards:strandio
   ::  always set a timeout timer
-  :-  [%pass /timeout %arvo %b %wait (add now.bowl timeout)]
+  :-  [%pass /timeout %arvo %behn %wait (add now.bowl timeout)]
   ::  for each reference, open one or more subscriptions
   ::
   %-  zing

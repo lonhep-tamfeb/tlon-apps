@@ -1,7 +1,7 @@
 ::  logs: gather log events and submit reports
 ::
 /+  l=logs
-/+  default-agent, dbug
+/+  default-agent, dbug, transform
 /=  ted-posthog    /ted/posthog
 /=  ted-send-otel  /ted/send-otel
 ::
@@ -9,7 +9,7 @@
 ::
 =>
   |%
-  +$  card  card:agent:gall
+  +$  card  old-card:transform
   +$  current-state
     $:  %2
           volume=(unit volume:v1:l)  ::  volume threshold
@@ -18,8 +18,9 @@
   ::
   ++  commit  ?~(^commit 'unknown' -.^commit)
   --
+%-  agent:transform
 %-  agent:dbug
-^-  agent:gall
+^-  old-agent:transform
 =|  current-state
 =*  state  -
 =<
@@ -51,6 +52,7 @@
   ++  on-agent  on-agent:def
   ++  on-arvo
     |=  [=wire =sign-arvo]
+    ^-  (quip card _this)
     =^  cards  state
       abet:(arvo:cor wire sign-arvo)
     [cards this]

@@ -38,7 +38,7 @@
 ::TODO  discipline
 ::
 /-  *presence, cv=channels-ver, gv=groups-ver, av=activity-ver
-/+  dbug, verb, logs
+/+  dbug, transform, verb, logs
 ::
 |%
 ::NOTE  .want contains a [ship context] pair, because for ease-of-use we
@@ -56,7 +56,7 @@
       ::TODO  wack=(set ship)     ::  waiting for acks (load prevention)
   ==
 ::
-+$  card  card:agent:gall
++$  card  old-card:transform
 ::
 ++  max-tries  5
 ::
@@ -434,10 +434,11 @@
 =|  state-2
 =*  state  -
 ::
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
 ::
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this  .
     log   ~(. logs [bowl /logs])

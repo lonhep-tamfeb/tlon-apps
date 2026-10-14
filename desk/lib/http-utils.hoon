@@ -1,5 +1,6 @@
 ::  http-utils: helpers
 ::
+/+  transform
 |%
 +$  order  [id=@ta inbound-request:eyre]
 +$  query  [trail args=(list [key=@t value=@t])]
@@ -33,7 +34,7 @@
 ::
 ++  spout  ::  build full response cards
   |=  [eyre-id=@ta simple-payload:http]
-  ^-  (list card:agent:gall)
+  ^-  (list old-card:transform)
   =/  =path  /http-response/[eyre-id]
   :~  [%give %fact ~[path] [%http-response-header !>(response-header)]]
       [%give %fact ~[path] [%http-response-data !>(data)]]
@@ -42,6 +43,6 @@
 ::
 ++  store  ::  set cache entry
   |=  [url=@t entry=(unit cache-entry:eyre)]
-  ^-  card:agent:gall
+  ^-  old-card:transform
   [%pass /eyre/cache %arvo %e %set-response url entry]
 --

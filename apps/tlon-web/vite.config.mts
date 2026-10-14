@@ -185,6 +185,9 @@ export default ({ mode }: { mode: string }) => {
         : ['@urbit/sigil-js/dist/core', 'react-native-device-info'],
     output: {
       hashCharacters: 'base36' as any,
+      // clay path segments must be lowercase @ta knots
+      chunkFileNames: (chunk: { name: string }) =>
+        `assets/${chunk.name.toLowerCase().replace(/[^a-z0-9._~-]/g, '-')}-[hash].js`,
       manualChunks: {
         lodash: ['lodash'],
         'lodash/fp': ['lodash/fp'],

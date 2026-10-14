@@ -1,8 +1,8 @@
 /-  settings
-/+  summarize, default-agent, verb, dbug
+/+  summarize, default-agent, verb, dbug, transform
 ::
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 +$  state-1  [%1 enabled=_| bark-host=_~rilfet-palsum]
 --
 ::
@@ -10,9 +10,10 @@
 ::
 =|  state-1
 =*  state  -
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this  .
     def   ~(. (default-agent this %.n) bowl)

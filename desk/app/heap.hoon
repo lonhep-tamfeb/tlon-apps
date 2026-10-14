@@ -1,9 +1,9 @@
-/+  default-agent, dbug
+/+  default-agent, dbug, transform
 ::  performance, keep warm
 ^-  agent:gall
 =>
   |%
-  +$  card  card:agent:gall
+  +$  card  old-card:transform
   +$  current-state  [@ *]
   ::NOTE  if @ is %1, noun contains the following, h is /sur/heap from 828f5ed:
   ::  $:  =stash:h
@@ -15,6 +15,7 @@
   --
 =|  current-state
 =*  state  -
+%-  agent:transform
 %-  agent:dbug
 |_  =bowl:gall
 +*  this  .

@@ -1,11 +1,11 @@
 /-  u=ui, gv=groups-ver, c=chat, cv=chat-ver, d=channels, dv=channels-ver,
     a=activity, av=activity-ver, b=buckets
-/+  default-agent, dbug, verb, vita-client
+/+  default-agent, dbug, transform, verb, vita-client
 ::  performance, keep warm
 ^-  agent:gall
 =>
   |%
-  +$  card  card:agent:gall
+  +$  card  old-card:transform
   +$  current-state
     $:  %3
         hidden-contact-suggestions=(set ship)
@@ -17,6 +17,7 @@
 =|  current-state
 =*  state  -
 =<
+  %-  agent:transform
   %^  verb  |  %warn
   %-  agent:dbug
   %-  (agent:vita-client [| ~sogryp-dister-dozzod-dozzod])

@@ -1,8 +1,8 @@
 /-  reel, groups-ver
-/+  default-agent, verb, dbug, server, logs, *reel
+/+  default-agent, verb, dbug, transform, server, logs, *reel
 /=  ted-branch-update  /ted/branch-update
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 +$  versioned-state
   $%  state-0
       state-1
@@ -68,6 +68,7 @@
 =|  state-3
 =*  state  -
 ::
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
 =>

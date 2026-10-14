@@ -6,10 +6,10 @@
 ::    receiving responses, uses the mailchimp api to upload the received
 ::    deets for that ship, and/or triggers an email send.
 ::
-/+  default-agent, verb, dbug
+/+  default-agent, verb, dbug, transform
 ::
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 +$  state-0
   $:  %0
       api=[tlon=@t mailchimp=[key=@t list-id=@t]]
@@ -25,9 +25,10 @@
 ::
 =|  state-0
 =*  state  -
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this  .
     def   ~(. (default-agent this %.n) bowl)

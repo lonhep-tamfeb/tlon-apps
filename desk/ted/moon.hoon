@@ -26,5 +26,5 @@
   pub:ex:cub
 ;<  ~  bind:m
   %-  send-raw-card:strandio
-  [%pass /ted/moon %arvo %j %moon mon *id:block:jael %keys [1 1 pass] %.n]
+  [%pass /ted/moon %arvo %jael %moon mon *id:block:jael %keys [1 1 pass] %.n]
 (pure:m !>([mon `(unit @uw)`(bind seed jam)]))

@@ -1,4 +1,4 @@
-/+  logs
+/+  logs,transform
 ::  negotiate: hands-off version negotiation
 ::
 ::      v1.0.1: greenhorn ambassador
@@ -81,7 +81,7 @@
 ::
 ++  initiate
   |=  =gill:gall
-  ^-  card:agent:gall
+  ^-  old-card:transform
   [%give %fact [/~/negotiate/initiate]~ %negotiate-initiate-version !>(gill)]
 ::
 ++  read-status
@@ -97,10 +97,10 @@
 ::
 ++  agent
   |=  [notify=? our-versions=(map protocol version) =our=config]
-  ^-  $-(agent:gall agent:gall)
+  ^-  $-(old-agent:transform old-agent:transform)
   |^  agent
   ::
-  +$  card  card:agent:gall
+  +$  card  old-card:transform
   ::
   ++  helper
     |_  [=bowl:gall state-2]
@@ -421,7 +421,7 @@
       [`[(slav %p i) i.t] t.t]
     ::
     ++  simulate-kicks
-      |=  [kik=(list [=wire gill:gall]) inner=agent:gall]
+      |=  [kik=(list [=wire gill:gall]) inner=old-agent:transform]
       ^-  [[(list card) _inner] _state]
       =|  cards=(list card)
       |-
@@ -519,10 +519,10 @@
     --
   ::
   ++  agent
-    |=  inner=agent:gall
+    |=  inner=old-agent:transform
     =|  state-2
     =*  state  -
-    ^-  agent:gall
+    ^-  old-agent:transform
     !.  ::  we hide all the "straight into the inner agent" paths from traces
     |_  =bowl:gall
     +*  this    .
@@ -851,7 +851,7 @@
       [cards this]
     ::
     ++  on-arvo
-      |=  [=wire sign=sign-arvo:agent:gall]
+      |=  [=wire sign=sign-arvo]
       ^-  (quip card _this)
       ?.  ?=([%~.~ %negotiate *] wire)
         =^  cards  inner  (on-arvo:og wire sign)  !:
@@ -886,9 +886,9 @@
         [cards this]
       ?.  ?&  ?=(%egg-any mark)
             !:
-              =+  !<(=egg-any:gall vase)
-          ?&  ?=(%live +<.egg-any)
-              ?=([[%negotiate *] *] q.old-state.egg-any)
+              =/  =egg:gall  (latest:egg-aid:gall !<(egg-any:gall vase))
+          ?&  ?=(%live -.egg)
+              ?=([[%negotiate *] *] q.state.old-state.egg)
           ==  ==
         =^  cards  inner  (on-poke:og mark vase)  !:
         =^  cards  state  (play-cards:up cards)
@@ -901,11 +901,11 @@
         !>  ^-  egg-any:gall
         =/  =egg:gall  (latest:egg-aid:gall !<(egg-any:gall vase))
         ?>  ?=(%live -.egg)
-        :-  %20
+        :-  %21
         ^-  egg:gall
-        =*  vos  +.old-state.egg
+        =*  vos  state.old-state.egg
         %=  egg
-          +.old-state  :-  -:!>(**)  ::NOTE  hack
+          state.old-state  :-  -:!>(**)  ::NOTE  hack
                        ::  strip carefully, versions 0 and 1 will have
                        ::  double-vased state containing an h136 vase
                        ::

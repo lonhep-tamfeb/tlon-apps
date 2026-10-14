@@ -1,7 +1,7 @@
 ::  notes: shared notebook Gall agent (dual-mode host/subscriber)
 ::
 /-  n=notes, mcp-proxy, av=activity-ver
-/+  default-agent, dbug, verb, server, logs, notes-json, eyre-reply
+/+  default-agent, dbug, transform, verb, server, logs, notes-json, eyre-reply
 ::  static web assets, imported straight from files and served as-is. The
 ::  agent sets each response's content-type explicitly (see below), so the
 ::  import marks only need to carry the raw bytes.
@@ -14,16 +14,17 @@
 /*  icon-svg        %svg   /app/notes/icon/svg
 ::
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 +$  current-state  state-15:n
 --
 ::
 =|  current-state
 =*  state  -
 ::
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 =<
 |_  =bowl:gall
 +*  this  .
@@ -247,7 +248,7 @@
 ++  run-import
   |=  egg=$>(%live egg:gall)
   ^+  cor
-  =/  bak  (load -:!>(*any-state:load) +>.old-state.egg)
+  =/  bak  (load -:!>(*any-state:load) q.state.old-state.egg)
   =.  books  (~(uni by books:bak) books)
   =.  next-id  (max next-id next-id:bak)
   =.  published  (~(uni by published:bak) published)

@@ -1,11 +1,12 @@
 /-  *logs
+/+  transform
 =<
   |_  [=bowl:gall =wire]
   ::
   ++  fail
     |=  [vol=volume =echo =tang =log-data]
     ~>  %spin.['logs-fail']
-    ^-  card:agent:gall
+    ^-  old-card:transform
     =/  event=$>(%fail log-event)
       [%fail vol echo tang]
     (pass event log-data)
@@ -13,13 +14,13 @@
   ++  on-fail
     |=  [=term =tang]
     ~>  %spin.['logs-on-fail']
-    ^-  card:agent:gall
+    ^-  old-card:transform
     (fail %error ~[(cat 3 dap.bowl ' failed')] [leaf+"{<term>}" tang] ~)
   ::
   ++  tell
     |=  [vol=volume =echo =log-data]
     ~>  %spin.['logs-tell']
-    ^-  card:agent:gall
+    ^-  old-card:transform
     =/  event=$>(%tell log-event)
       [%tell vol echo]
     (pass event log-data)
@@ -31,7 +32,7 @@
   ::
   ++  pass
     |=  [event=log-event data=log-data]
-    ^-  card:agent:gall
+    ^-  old-card:transform
     =.  data  ['src'^s+(scot %p src.bowl) data]
     [%pass wire %agent [our.bowl %logs] %poke log-action-1+!>(`a-log`[%log event data])]
   --

@@ -7,10 +7,10 @@
 ::    eventually respond with whatever response it got back.
 ::
 /+  hutils=http-utils,
-    logs, dbug, verb
+    logs, dbug, transform, verb
 ::
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 ::
 ++  fetch
   |=  $:  [for=@ta secure=?]
@@ -57,10 +57,11 @@
 ::
 =+  log=l
 ::
+%-  agent:transform
 %^  verb  |  %warn
 %-  agent:dbug
 ::
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this  .
     l     log(bowl bowl)

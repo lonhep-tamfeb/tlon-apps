@@ -1,18 +1,18 @@
 ::  Print what your agent is doing.
 ::
 /-  *verb
-/+  logs
+/+  logs, transform
 ::
-|=  [loud=? =volume:logs =agent:gall]
+|=  [loud=? =volume:logs agent=old-agent:transform]
 =|  bowl-print=_|
-^-  agent:gall
+^-  old-agent:transform
 |^  !.
 |_  =bowl:gall
 +*  this  .
     ag    ~(. agent bowl)
 ::
 ++  on-init
-  ^-  (quip card:agent:gall agent:gall)
+  ^-  (quip old-card:transform old-agent:transform)
   %-  (print bowl |.("{<dap.bowl>}: on-init"))
   =^  cards  agent  on-init:ag
   :_  this
@@ -27,7 +27,7 @@
 ::
 ++  on-load
   |=  old-state=vase
-  ^-  (quip card:agent:gall agent:gall)
+  ^-  (quip old-card:transform old-agent:transform)
   %-  (print bowl |.("{<dap.bowl>}: on-load"))
   =^  cards  agent  (on-load:ag old-state)
   :_  this
@@ -37,7 +37,7 @@
 ::
 ++  on-poke
   |=  [=mark =vase]
-  ^-  (quip card:agent:gall agent:gall)
+  ^-  (quip old-card:transform old-agent:transform)
   %-  (print bowl |.("{<dap.bowl>}: on-poke with mark {<mark>}"))
   ?:  ?=(%verb mark)
     =+  !<(=cmd vase)
@@ -54,7 +54,7 @@
 ::
 ++  on-watch
   |=  =path
-  ^-  (quip card:agent:gall agent:gall)
+  ^-  (quip old-card:transform old-agent:transform)
   %-  (print bowl |.("{<dap.bowl>}: on-watch on path {<path>}"))
   =^  cards  agent
     ?:  ?=([%verb ?(%events %events-plus) ~] path)
@@ -67,7 +67,7 @@
 ::
 ++  on-leave
   |=  =path
-  ^-  (quip card:agent:gall agent:gall)
+  ^-  (quip old-card:transform old-agent:transform)
   %-  (print bowl |.("{<dap.bowl>}: on-leave on path {<path>}"))
   ?:  ?=([%verb %event ~] path)
     [~ this]
@@ -85,7 +85,7 @@
 ::
 ++  on-agent
   |=  [=wire =sign:agent:gall]
-  ^-  (quip card:agent:gall agent:gall)
+  ^-  (quip old-card:transform old-agent:transform)
   %-  (print bowl |.("{<dap.bowl>}: on-agent on wire {<wire>}, {<-.sign>}"))
   =^  cards  agent  (on-agent:ag wire sign)
   :_  this
@@ -102,7 +102,7 @@
 ::
 ++  on-arvo
   |=  [=wire =sign-arvo]
-  ^-  (quip card:agent:gall agent:gall)
+  ^-  (quip old-card:transform old-agent:transform)
   %-  %+  print  bowl  |.
       "{<dap.bowl>}: on-arvo on wire {<wire>}, {<[- +<]:sign-arvo>}"
   =^  cards  agent  (on-arvo:ag wire sign-arvo)
@@ -113,7 +113,7 @@
 ::
 ++  on-fail
   |=  [=term =tang]
-  ^-  (quip card:agent:gall agent:gall)
+  ^-  (quip old-card:transform old-agent:transform)
   %-  (print bowl |.("{<dap.bowl>}: on-fail with term {<term>}"))
   =^  cards  agent  (on-fail:ag term tang)
   :_  this
@@ -158,17 +158,17 @@
 ::
 ++  emit-event
   |=  =event
-  ^-  card:agent:gall
+  ^-  old-card:transform
   [%give %fact ~[/verb/events] %verb-event !>(event)]
 ::
 ++  emit-event-plus
-  |=  [=bowl:gall =cause cards=(list card:agent:gall)]
-  ^-  card:agent:gall
+  |=  [=bowl:gall =cause cards=(list old-card:transform)]
+  ^-  old-card:transform
   =;  event=event-plus
     [%give %fact ~[/verb/events-plus] %verb-event-plus !>(event)]
   =-  [act.bowl now.bowl src.bowl sap.bowl cause -]
   %+  turn  cards
-  |=  =card:agent:gall
+  |=  card=old-card:transform
   ^-  effect
   ::TODO  for %fact, %kick, could calculate how many ships affected
   ?-  card

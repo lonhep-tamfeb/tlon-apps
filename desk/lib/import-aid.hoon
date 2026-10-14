@@ -1,5 +1,6 @@
 ::  import-aid: aides for delaying & kicking backup imports
 ::
+/+  transform
 |%
 +$  pimp        ::  pending import state
   %-  unit      ::  nothing to do, or:
@@ -16,7 +17,7 @@
 ::
 ++  prod-next
   |=  [our=ship here=dude:gall]
-  ^-  (list card:agent:gall)
+  ^-  (list old-card:transform)
   ~&  [%prodding-next as=here next=~(tap in (~(gut by order) here ~))]
   %+  turn
     ~(tap in (~(gut by order) here ~))
@@ -24,6 +25,6 @@
 ::
 ++  prod
   |=  [our=ship =dude:gall]
-  ^-  card:agent:gall
+  ^-  old-card:transform
   [%pass /pimp %agent [our dude] %poke %noun !>(%pimp-ready)]
 --

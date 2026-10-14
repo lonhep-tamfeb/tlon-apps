@@ -29,9 +29,10 @@
 ::
 /-  verifier, c=contacts
 /+  logs,
-    dbug, verb, negotiate
+    dbug, transform, verb, negotiate
 =,  (verifier)
 ::
+%-  agent:transform
 %-  %-  agent:negotiate
     [notify=| expose=[~.lanyard^%1 ~ ~] expect=[%verifier^[~.verifier^%0 ~ ~] ~ ~]]
 %-  agent:dbug
@@ -48,7 +49,7 @@
       queries=(map @uv (each [q=question:l a=result:l] question:l))  ::  asked
   ==
 +$  key      [h=@p id=identifier]  ::TODO  use more widely
-+$  card     card:agent:gall
++$  card     old-card:transform
 ::
 ++  join-service
   |=  [our=@p host=@p]
@@ -228,7 +229,7 @@
 ::
 =+  log=lo
 ::
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this  .
     lo    log(bowl bowl)

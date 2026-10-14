@@ -14,10 +14,10 @@
 /-  cv=chat-ver, chv=channels-ver, st=story
 /-  sl=steward-lens, sg=steward-gateway, sa=steward-automation, sp=steward-prompts
 /-  lg=logs
-/+  default-agent, verb, dbug, server, logs, utils=channel-utils
+/+  default-agent, verb, dbug, transform, server, logs, utils=channel-utils
 /+  aj=steward-automation-json, pj=steward-prompts-json
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 ::  state is versioned; +on-load migrates older shapes forward.
 ::
 ::    .owner: shared owner ship (lens send target, gateway owner-DM tracking)
@@ -111,9 +111,10 @@
 --
 =|  state-5
 =*  state  -
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 =<
   |_  =bowl:gall
   +*  this  .

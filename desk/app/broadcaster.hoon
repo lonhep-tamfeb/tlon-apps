@@ -2,7 +2,7 @@
 ::
 /-  c=chat, cv=chat-ver, c3=chat-3, c4=chat-4, ch=channels
 /+  sj=story-json, cc=chat-conv,
-    dbug, verb
+    dbug, transform, verb
 ::
 |%
 +$  versioned-state  $%(current-state state-0)
@@ -47,12 +47,13 @@
     ==
   --
 ::
-+$  card  card:agent:gall
++$  card  old-card:transform
 --
 ::
+%-  agent:transform
 %^  verb  |  %warn
 %-  agent:dbug
-^-  agent:gall
+^-  old-agent:transform
 ::
 =|  current-state
 =*  state  -

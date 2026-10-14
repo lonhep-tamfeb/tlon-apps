@@ -6,7 +6,7 @@
 ::    can choose which widgets to display on their public page.
 ::
 /-  co=contacts-0
-/+  dbug, verb, sigil, hutils=http-utils
+/+  dbug, transform, verb, sigil, hutils=http-utils
 /=  stock-widgets  /app/profile/widgets
 ::
 /*  style-shared  %css  /app/profile/style/shared/css
@@ -41,7 +41,7 @@
       [%toggle-cta set=(unit ?)]
   ==
 ::
-+$  card  $+(card card:agent:gall)
++$  card  $+(card old-card:transform)
 --
 ::
 |_  [=bowl:gall state-1]
@@ -252,12 +252,13 @@
   --
 --
 ::
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
 ::
 =|  state-1
 =*  state  -
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this  .
     do    ~(. +>+ bowl state)
@@ -359,7 +360,7 @@
     ?.  ?=(%live -.egg)
       ~&  [dap.bowl %egg-not-live]
       [~ this]
-    (on-load -:!>(*state-1) +>.old-state.egg)
+    (on-load -:!>(*state-1) q.state.old-state.egg)
   ==
 ::
 ++  on-watch

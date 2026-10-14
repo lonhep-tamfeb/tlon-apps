@@ -6,8 +6,9 @@
 ::  argument for it living in one place -- a reply that is subtly wrong is a
 ::  request that hangs rather than an error anyone sees.
 ::
+/+  transform
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 ::  +reply: the three gifts one eyre request is answered with.
 ::
 ::  Header, body, then the kick that closes it. All three go on the same

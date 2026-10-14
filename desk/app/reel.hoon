@@ -1,7 +1,7 @@
 /-  reel, groups-ver
-/+  default-agent, verb, dbug, logs, *reel, s=subscriber, t=contacts
+/+  default-agent, verb, dbug, transform, logs, *reel, s=subscriber, t=contacts
 |%
-+$  card  card:agent:gall
++$  card  old-card:transform
 +$  versioned-state
   $%  state-0
       state-1
@@ -101,6 +101,7 @@
 =|  state-7
 =*  state  -
 ::
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
 =>
@@ -667,7 +668,7 @@
   ==
 ++  on-arvo
   |=  [=wire =sign-arvo]
-  ^-  (quip card:agent:gall _this)
+  ^-  (quip old-card:transform _this)
   ?+  wire  (on-arvo:def wire sign-arvo)
       [%set-ship ~]
     ?>  ?=([%khan %arow *] sign-arvo)

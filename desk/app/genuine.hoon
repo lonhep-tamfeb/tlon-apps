@@ -1,4 +1,4 @@
-/+  default-agent, verb, dbug, server
+/+  default-agent, verb, dbug, transform, server
 |%
 ++  give-payload
   |=  [id=@ta =simple-payload:http]
@@ -11,7 +11,7 @@
   %+  skip  (trip (scot %uw eny))
   |=  =cord
   =(cord '.')
-+$  card  card:agent:gall
++$  card  old-card:transform
 +$  versioned-state
   $%  state-0
   ==
@@ -23,9 +23,10 @@
 ::
 =|  state-0
 =*  state  -
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 |_  =bowl:gall
 +*  this  .
     def   ~(. (default-agent this %.n) bowl)

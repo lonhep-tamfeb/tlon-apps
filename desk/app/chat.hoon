@@ -1,7 +1,7 @@
 /-  c=chat, cv=chat-ver, d=channels, dv=channels-ver, g=groups
 /-  u=ui, e=epic, a=activity, av=activity-ver, s=story, meta
 /-  contacts
-/+  default-agent, verb, dbug,
+/+  default-agent, verb, dbug, transform,
     guard,
     neg=negotiate, discipline, logs,
     em=emojimart
@@ -15,6 +15,7 @@
 ::
 /*  desk-bill  %bill  /desk/bill  ::  keep warm
 ::
+%-  agent:transform
 %-  %-  discipline
     :+  ::  unchanging marks
         ::
@@ -161,7 +162,7 @@
 %-  agent:dbug
 %^  verb  |  %warn
 ::
-^-  agent:gall
+^-  old-agent:transform
 =>
   |%
   +$  card  card:guard
@@ -236,7 +237,7 @@
   ++  on-leave   on-leave:def
   ++  on-fail
     |=  [=term =tang]
-    ^-  (quip card:agent:gall _this)
+    ^-  (quip old-card:transform _this)
     :_  this
     [(~(on-fail logs bowl /logs) term tang)]~
   ::
@@ -967,7 +968,7 @@
       ~&  [dap.bowl %egg-not-live]
       cor
     =/  bak=_cor
-      (load -:!>(*[versioned-state:load @ud]) q.old-state.egg)
+      (load -:!>(*[versioned-state:load @ud]) q.state.old-state.egg)
     ::  restore previous data, doing a "deep merge" where possible.
     ::  in doing so we must take care around sequence numbers.
     ::  to keep that logic simple, we merge the message lists and

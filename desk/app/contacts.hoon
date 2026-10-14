@@ -8,7 +8,7 @@
 ::
 ::
 /-  activity-ver
-/+  default-agent, dbug, verb, neg=negotiate,
+/+  default-agent, dbug, transform, verb, neg=negotiate,
     guard
 /+  *contacts, kol
 ::
@@ -37,13 +37,14 @@
       retry=(map ship @da)  ::  retry sub at time
   ==
 --
+%-  agent:transform
 %-  %^  agent:neg
         notify=|
       [~.contacts^%1 ~ ~]
     [~.contacts^[~.contacts^%1 ~ ~] ~ ~]
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 =|  state-4
 =*  state  -
 =<  |_  =bowl:gall

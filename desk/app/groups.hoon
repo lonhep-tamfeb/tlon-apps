@@ -9,7 +9,7 @@
 /-  g=groups, gv=groups-ver, c=chat, d=channels, dv=channels-ver, s=story,
     av=activity-ver
 /-  meta
-/+  default-agent, verb, dbug,
+/+  default-agent, verb, dbug, transform,
     guard
 /+  gc=groups-conv, cu=channel-utils, v=volume, s=subscriber, imp=import-aid, logs,
     t=contacts
@@ -21,6 +21,7 @@
 ::
 /*  commit  %txt  /commit/txt
 ::
+%-  agent:transform
 %-  %-  discipline
   :+  ::  unchanging marks
       ::
@@ -145,7 +146,7 @@
 %-  agent:dbug
 %^  verb  |  %warn
 ::
-^-  agent:gall
+^-  old-agent:transform
 =>
   |%
   +$  card  card:guard
@@ -595,7 +596,7 @@
   ?.  ?=(%live -.egg)
     ~&  [dap.bowl %egg-not-live]
     cor
-  =/  bak  (load -:!>([*any-state:load ~]) +>.old-state.egg)
+  =/  bak  (load -:!>([*any-state:load ~]) q.state.old-state.egg)
   ::  restore any previews & invites we might've had
   ::
   =.  foreigns
@@ -723,7 +724,7 @@
     %+  roll  ~(tap by wex.bowl)
     |=  [[[=wire =dock] *] =_cor]
     ?.  ?=([%epic ~] wire)  cor
-    =^  caz=(list card:agent:gall)  subs.cor
+    =^  caz=(list old-card:transform)  subs.cor
       (~(unsubscribe s [subs bowl]) wire dock)
     (emil:cor (turn caz unsafe:guard))
   =?  old  ?=(%4 -.old)  (state-4-to-5 old)
@@ -737,7 +738,7 @@
   ::
   =?  cor  ?=(%8 -.old)
     =/  =dock  [our.bowl %contacts]
-    =^  caz=(list card:agent:gall)  subs.cor
+    =^  caz=(list old-card:transform)  subs.cor
       (~(unsubscribe s [subs bowl]) /contact dock)
     (emil:cor (turn caz unsafe:guard))
   =?  old  ?=(%8 -.old)  (state-8-to-9 old)
@@ -1606,7 +1607,7 @@
       [%~.~ %cancel-retry rest=*]  cor
   ::
       [%~.~ %retry rest=*]
-    =^  caz=(list card:agent:gall)  subs
+    =^  caz=(list old-card:transform)  subs
       (~(handle-wakeup s [subs bowl]) pole)
     (emil (turn caz unsafe:guard))
   ::
@@ -1780,7 +1781,7 @@
   |=  delay=?
   ^+  cor
   ?:  (~(has by wex.bowl) wire dock)  cor
-  =^  caz=(list card:agent:gall)  subs
+  =^  caz=(list old-card:transform)  subs
     (~(subscribe s [subs bowl]) wire dock path delay)
   (emil (turn caz unsafe:guard))
 ::  +eager-leave: eagerly unsubscribe from a path
@@ -1794,7 +1795,7 @@
   ~>  %spin.['eager-leave']
   ^+  cor
   =.  wex.bowl  (~(del by wex.bowl) wire dock)
-  =^  caz=(list card:agent:gall)  subs
+  =^  caz=(list old-card:transform)  subs
     (~(unsubscribe s [subs bowl]) wire dock)
   (emil (turn caz unsafe:guard))
 ::
@@ -4886,7 +4887,7 @@
     ::  cancel a possible preview
     ::
     =?  cor  done
-      =^  caz=(list card:agent:gall)  subs
+      =^  caz=(list old-card:transform)  subs
         =/  =dock  [p.flag dap.bowl]
         (~(unsubscribe s [subs bowl]) (weld fi-area /preview) dock)
       (emil (turn caz unsafe:guard))

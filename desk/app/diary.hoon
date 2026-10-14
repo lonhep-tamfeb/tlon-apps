@@ -1,8 +1,8 @@
-/+  default-agent, dbug
+/+  default-agent, dbug, transform
 ^-  agent:gall
 =>
   |%
-  +$  card  card:agent:gall
+  +$  card  old-card:transform
   +$  current-state  [@ *]
   ::NOTE  if @ is %2, noun contains the following, d is /sur/diary from 828f5ed:
   ::  $:  %2
@@ -15,6 +15,7 @@
   --
 =|  current-state
 =*  state  -
+%-  agent:transform
 %-  agent:dbug
 |_  =bowl:gall
 +*  this  .

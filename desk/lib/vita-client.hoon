@@ -14,10 +14,11 @@
 :: to disable, poke the inner agent
 :: :myagent %vita-client [%set-enabled |]
 ::
+/+  transform
 |%
 ++  active
   |=  [=bowl:gall]
-  ^-  card:agent:gall
+  ^-  old-card:transform
   :*  %pass
       /
       %agent
@@ -28,7 +29,7 @@
   ==
 ++  active-to-parent
   |=  [parent=ship =bowl:gall]
-  ^-  card:agent:gall
+  ^-  old-card:transform
   %-  (slog leaf+"{<dap.bowl>} vita-client: sending activity to {<parent>}" ~)
   :*  %pass
       /
@@ -52,7 +53,7 @@
 ::
 ++  agent
   |=  [init=config]
-  ^-  $-(agent:gall agent:gall)
+  ^-  $-(old-agent:transform old-agent:transform)
   |^  agent
   ::
   +$  state-1
@@ -60,12 +61,12 @@
         =config
         last=time
     ==
-  +$  card  card:agent:gall
+  +$  card  old-card:transform
   ++  agent
-    |=  inner=agent:gall
+    |=  inner=old-agent:transform
     =|  state-1
     =*  state  -
-    ^-  agent:gall
+    ^-  old-agent:transform
     |_  =bowl:gall
     +*  this  .
         ag    ~(. inner bowl)

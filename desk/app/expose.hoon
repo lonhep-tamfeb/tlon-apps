@@ -7,7 +7,7 @@
 ::
 /-  c=cite, d=channels, dv=channels-ver, co=contacts, ci=cite
 /+  u=channel-utils, hutils=http-utils,
-    dbug, verb
+    dbug, transform, verb
 ::
 /=  page    /app/expose/page
 /=  widget  /app/expose/widget
@@ -25,7 +25,7 @@
       [%hide =path]
   ==
 ::
-+$  card  card:agent:gall
++$  card  old-card:transform
 ::
 ++  e  ::  expose utils
   |%
@@ -130,9 +130,10 @@
   (rash i.t.wer.b dum:ag)
 --
 ::
+%-  agent:transform
 %-  agent:dbug
 %^  verb  |  %warn
-^-  agent:gall
+^-  old-agent:transform
 ::
 =|  state-2
 =*  state  -
