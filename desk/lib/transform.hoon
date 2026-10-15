@@ -1,6 +1,8 @@
-::  convert old-agent:gall and agent:gall
-::  allowing to migrate to gall-2026 without major changes
-::  by migrting with this library desk would require %super permission
+::  transform: wrap a 408 agent:gall to produce a gall-26 agent:gall
+::
+::    lets agents written against the 408 gall api migrate to the
+::    latest gall api without major changes.
+::    desks using this library require root permission.
 ::
 |%
 +$  old-card   card:old-agent
@@ -185,7 +187,7 @@
     ::
         %pass
       ?-  -.q.card
-        %agent  [%pass p.card %agent +.q.card]
+        %agent  card
       ::
           %arvo
         =-  [%pass p.card %arvo %syscall -]
@@ -220,14 +222,12 @@
       =+  !<(=sign-arvo [-:!>(*sign-arvo) sign-arvo.gift])
       sign-arvo
     ::
-        %ames  ::  [%ames %sage sage:mess:ames]
-      ?>  ?=([%ames %sage [[@ *] ?(~ *)]] gift)
+        %ames
+      ?>  ?=([%ames %sage *] gift)
       ;;(sign-arvo gift)
     ::
       %unsupported  ~|('got unsupported gift' !!)  :: TODO: include wire, do not crash
-        %revoked
-      ~|  "got revoked resource gift {<arvo-resource.gift>}"
-      !!
+      %revoked      ~|("got revoked resource gift {<arvo-resource.gift>}" !!)
     ==
   --
 --
