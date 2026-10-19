@@ -259,7 +259,8 @@
       %-  (bond |.(^$(site (snip site))))
       (~(get by auth) site)
   ::  construct the relative target path,
-  ::  falling back to the index file or page where applicable
+  ::  falling back to the index file or page where applicable.
+  ::  .ext is always the last element of the pax.target
   ::
   =/  target=$@(?(~ %apache) [pax=path ext=@ta])
     ::  if trailing /, resolve according to +index
@@ -294,7 +295,7 @@
       ::
       =+  fallback=fallback
       ?:  &(?=(^ fallback) !=(pax.target u.fallback))
-        $(pax.target u.fallback)
+        $(target [u.fallback (rear u.fallback)])
       ~&  [dap.bowl %not-found path=path]
       [[404 ~] `(as-octs:mimes:html 'not found')]
     =+  .^(file=^vase %cr path)
